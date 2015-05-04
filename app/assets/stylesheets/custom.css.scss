@@ -1,0 +1,16 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+.fa {
+  font-size: 1.2em !important;
+  margin-right: .5em;
+}
+
+.fa-edit:hover {
+  color: #ffa600;
+}
+
+.fa-trash:hover {
+  color: red;
+}
