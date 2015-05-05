@@ -27,9 +27,16 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'figaro'
+gem 'ffaker'
 
 gem 'normalize-rails'
 gem 'font-awesome-rails'
+
+group :test, :development do
+   gem 'factory_girl_rails'
+   gem 'rspec-rails'
+   gem 'shoulda'
+end
 
 # gem 'twitter-bootstrap-rails'
 # gem 'less-rails'
