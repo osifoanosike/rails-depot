@@ -1,0 +1,19 @@
+<p class="notice">
+  <%= notice %>
+</p>
+
+<!-- <h3>Products Catalogue</h3> -->
+<section id="cataloque">
+  <% @products.each do |product| %>
+    <figure data-id="<%= product.id %>" class="catalogue-item force-inline-block">
+      <%= image_tag( product.image_url, class: "product_image") %>
+      <figcaption>
+        <section>
+          <p class="description"><%= product.name %></p>
+          <span class="price pull-right"><%= number_to_currency(product.price, unit: "\u20A6".html_safe) %></span>
+        </section>
+      </figcaption>
+    </figure>
+  <% end %>
+</section>
+

@@ -31,6 +31,7 @@ gem 'ffaker'
 
 gem 'normalize-rails'
 gem 'font-awesome-rails'
+gem 'carrierwave'
 
 group :test, :development do
    gem 'factory_girl_rails'

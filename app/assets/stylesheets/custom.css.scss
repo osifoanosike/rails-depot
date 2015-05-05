@@ -1,6 +1,26 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.navbar {
+  
+  border-radius: 0;
+
+  * {
+      background-color: #005387;
+  }
+}
+
+a.navbar-brand {
+  color: #fff !important;
+}
+
+small#app-spec {
+  color: #2eaeff;
+}
+
+.container.main {
+  margin-top: 4em;
+}
 
 .fa {
   font-size: 1.2em !important;

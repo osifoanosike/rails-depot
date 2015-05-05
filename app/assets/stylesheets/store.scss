@@ -1,0 +1,35 @@
+// Place all the styles related to the Store controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#store-container * {
+  
+}
+
+.force-inline-block {
+  display: inline-block
+}
+
+.catalogue-item {
+  width: 240px;
+  height: 305px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 3px;
+  margin: 6px;
+}
+
+.catalogue-item:hover {
+  border: 1px solid #ffa600;
+}
+
+.description {
+  padding-bottom: .4em;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1px;
+}
+
+.price {
+  color: #444;
+}
+

@@ -7,9 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <section class="container">
-
-    
+  <header>
+      <%= render partial: "layouts/header" %>
+  </header>
+  <section class="container main"> 
     <div class="row col-md-10">
       <%= yield %>
     </div>
