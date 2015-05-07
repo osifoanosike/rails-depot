@@ -1,0 +1,32 @@
+// Place all the styles related to the line_items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.item-action {
+  display: inline;
+}
+
+.item-action form {
+  display: inline;
+
+  .remove_from_cart {
+    background-color: transparent !important;
+    border: 1px solid #fff;
+    color: #adadad;
+    padding: 2px;
+
+    i {
+      font-weight: light;
+      margin: 0 !important;
+    }
+  }
+    
+  .item-action {
+    display: inline;
+  }
+}
+
+.remove_from_cart:hover {
+  color: #d9534f !important;
+}

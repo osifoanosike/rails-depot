@@ -1,0 +1,33 @@
+<li class="cart-item">
+      <div class="item-prop image">
+        <%= image_tag(line_item.product.image_url, width:"80px") %>
+      </div>
+
+      <div class="item-prop name">
+        <%= line_item.product.name %>
+      </div>
+
+      <div class="item-prop desc">
+        <%= line_item.product.description %>
+      </div>
+
+       <div class="item-prop qty">
+        <%= line_item.quantity %>
+      </div>
+
+      <div class="item-prop price">
+        <% if line_item.quantity > 1 %>
+          <span class="main"><%= number_to_currency( line_item.total_price, unit: "\u20A6".html_safe) %></span>
+          <small><%= line_item.quantity %> X <%= number_to_currency(line_item.product.price, unit: "\u20A6".html_safe) %></small>
+        <% else %>
+          <span class="main"><%= number_to_currency(line_item.total_price,
+           unit: "\u20A6".html_safe) %></span>
+        <% end %>  
+      </div>
+
+      <div class="item-action">
+        <%= button_to line_item, method: :delete, data: { confirm: "You sure you want to remove this item\nfrom your cart" }, class: 'remove_from_cart btn btn-clear' do %>
+          <%= content_tag(:i, nil, class: "fa fa-close") %>
+        <% end %>
+      </div>
+    </li>
