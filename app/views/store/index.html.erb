@@ -5,28 +5,6 @@
 <!-- <h3>Products Catalogue</h3> -->
 <section id="catalogue">
   <% cache ['catalogue', Product.latest] do %>
-    <% @products.each do |product| %>
-      <% cache [ 'catalogue-item', product ] do %>
-        <figure data-id="<%= product.id %>" class="catalogue-item force-inline-block">
-          <%= image_tag( image_path(product.image_url), class: "product_image") %>
-          <figcaption>
-            <p id="some-cached" class="description"><%= product.name %></p>
-            <section class="price_section">
-              <span class="price pull-left"><%= number_to_currency(product.price, unit: "\u20A6".html_safe) %></span>
-              <span class="clearfix"></span>
-            </section>
-
-            <section class="action_section">
-              <%= button_to line_items_path(product_id: product), class: 'add_to_cart_btn btn btn-default pull-right' do %>
-                <%= content_tag(:i, nil, class:"fa fa-cart-plus") %>
-                <span>Add to cart</span>
-              <% end %>
-              <span class="clearfix"></span>
-            </section>
-            </span>
-          </figcaption>
-        </figure>
-      <% end %>
-    <% end %>
+    <%= render @products %>
   <% end %>
 </section>

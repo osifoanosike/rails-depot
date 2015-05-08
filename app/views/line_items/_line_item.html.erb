@@ -1,4 +1,9 @@
-<li class="cart-item">
+<% if line_item == @current_item %>
+  <li class="cart-item" id="current_item" data-id="<%= line_item.id %>">
+<% else %>
+  <li class="cart-item"  data-id="<%= line_item.id %>">
+<% end %>
+
       <div class="item-prop image">
         <%= image_tag(line_item.product.image_url, width:"80px") %>
       </div>
@@ -26,8 +31,19 @@
       </div>
 
       <div class="item-action">
-        <%= button_to line_item, method: :delete, data: { confirm: "You sure you want to remove this item\nfrom your cart" }, class: 'remove_from_cart btn btn-clear' do %>
+        <%= button_to line_item, method: :delete, data: { confirm: "You sure you want to remove this item\nfrom your cart?" }, class: 'remove_from_cart btn btn-clear', remote: true do %>
           <%= content_tag(:i, nil, class: "fa fa-close") %>
+        <% end %>
+
+        <%= button_to increment_line_item_path(line_item), remote: true, class: 'modify_cart btn btn-clear' do %>
+          <%= content_tag(:i, nil, class: "fa fa-plus-circle") %>
+        <% end %>
+
+        <%= button_to decrement_line_item_path(line_item), class: 'modify_cart btn btn-clear', remote: true do %>
+          <%= content_tag(:i, nil, class: "fa fa-minus-circle") %>
         <% end %>
       </div>
     </li>
+
+
+    

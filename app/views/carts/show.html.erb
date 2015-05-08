@@ -1,34 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <h3>Your cart</h3>
-
-<div class="cart-header">
+<!-- <div class="cart-header">
   <span class="item image">Item</span>
   <span class="item name">Name</span>
   <span class="item desc">Description</span>
   <span class="item qty">Quantity</span>
   <span class="item price">Price</span>
-</div>
+</div> -->
 <ul>
-  <%= render @cart.line_items %>
-  <li>
-    <span>Total</span>
-    <span class="pull-right"><%= number_to_currency(@cart.total_amount, unit: "\u20A6")%></span>
-  </li>
-</ul>
-
-<section class="action-section">
-  <%= button_to @cart, method: :delete, data: { confirm: "You sure you want to empty your cart?" }, class: 'empty_cart_btn btn btn-default pull-right' do %>
-    <%= content_tag(:i, nil, class:"fa fa-cart-arrow-down") %>
-    <span class="btn-text">Empy Cart</span>
-  <% end %>
-
-  <%= link_to store_path, class:"continue-shop btn btn-primary pull-right" do %>
-  <i class="fa fa-reply"></i>
-    <span>Continue shopping</span>
-  <% end %>
-
-
-  <span class="clearfix"></span>
-</section>
-
+<%= render @cart %>

@@ -32,10 +32,11 @@ gem 'ffaker'
 gem 'normalize-rails'
 gem 'font-awesome-rails'
 gem 'carrierwave'
-gem 'factory_girl_rails'
+gem 'jquery-ui-rails'
+
 
 group :test, :development do
-   # gem 'factory_girl_rails'
+   gem 'factory_girl_rails'
    gem 'rspec-rails'
    gem 'shoulda'
 end

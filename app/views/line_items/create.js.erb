@@ -1,0 +1,8 @@
+//do some animation when the user adds the first item to the cart
+if( $('#cart-section .cart-item').length == 1 ) { $('#cart-container').show('blind', 2000) }
+
+$('#cart-section').html("<%= escape_javascript render(@cart) %>");
+
+//colorize the modified item
+$('#current_item').css({'background-color':'#ff4747', 'color': '#fff'})
+  .animate({'background-color': '#fff', 'color': '#444', 'border-botom': '#ccc'}, 1000);

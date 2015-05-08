@@ -1,0 +1,3 @@
+$('.cart-item[data-id="<%= @line_item.id %>"]').replaceWith("<%= escape_javascript render(@line_item) %>");
+
+$('#cart-total .pull-right').html("<%= number_to_currency(@line_item.cart.total_amount, unit: "\u20A6")%>");

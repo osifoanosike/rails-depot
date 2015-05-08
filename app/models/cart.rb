@@ -11,12 +11,17 @@ class Cart < ActiveRecord::Base
       current_line_item = line_items.build(product_id: product_id) #same as self.line_items.build
     end
 
-    update_line_item_price(current_line_item)
+    update_line_item_price(current_line_item, "increment")
     current_line_item
   end
 
-  def update_line_item_price(line_item)
-    line_item.total_price += line_item.product.price
+  def update_line_item_price(line_item, update_type)
+    if(update_type == "increment")
+       line_item.total_price += line_item.product.price
+    else
+       line_item.total_price -= line_item.product.price
+    end
+    line_item.save!
   end
 
   def total_amount

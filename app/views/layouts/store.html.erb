@@ -11,8 +11,19 @@
       <%= render partial: "layouts/header" %>
   </header>
   <div class="container main"> 
-    <section class="col-md-12 store">
+    <section class="col-md-9 store">
       <%= yield %>
+    </section>
+    <section class="col-md-3" id="cart-section">
+      <% if @cart.line_items.empty? %>
+        <section class="empty-cart-container">
+          <h5>Your cart is still empty.</h5>
+        </section>
+      <% else %>
+        <section id="cart-container">
+          <%= render @cart %>
+        </section>
+      <% end %>
     </section>
   </div>
 </body>

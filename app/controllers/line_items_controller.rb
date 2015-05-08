@@ -1,8 +1,8 @@
 class LineItemsController < ApplicationController
   include CurrentCart
   include StoreManager
-  before_action :set_cart, only: [:create]
-  before_action :set_line_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_cart, only: [:create, :destroy, :increment, :decrement]
+  before_action :set_line_item, only: [:show, :edit, :update, :destroy, :increment, :decrement]
   after_action :reset_visit_count, only: [:create]
 
   # GET /line_items
@@ -32,7 +32,8 @@ class LineItemsController < ApplicationController
     @line_item = @cart.add_product(product.id)
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item.cart, notice: 'Item was added to cart successfully.' }
+        format.html { redirect_to store_url, notice: 'Item was added to cart successfully.' }
+        format.js { @current_item = @line_item } #this sends along the created item to the js file
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
@@ -60,8 +61,29 @@ class LineItemsController < ApplicationController
   def destroy
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to cart_url(@line_item.cart) }
+      format.html { redirect_to store_url } #cart_url(@line_item.cart) }
+      format.js
       format.json { head :no_content }
+    end
+  end
+
+  def increment
+    @line_item.modify_quantity("increment")
+    @cart.update_line_item_price(@line_item, "increment")
+
+    respond_to do |format|
+      format.html { redirect_to store_url }
+      format.js
+    end
+  end
+
+  def decrement
+    @line_item.modify_quantity("decrement")
+    @cart.update_line_item_price(@line_item, "decrement")
+
+    respond_to do |format|
+      format.html { redirect_to store_url }
+      format.js 
     end
   end
 
