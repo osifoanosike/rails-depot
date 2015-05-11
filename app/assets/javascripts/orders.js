@@ -13,7 +13,7 @@ CheckoutView.prototype = {
   }
 }
 
-$(document).ready(function(){
+$(document).on("page:change", function(){
   var checkoutBtn = $('a.checkout');
   var emptyCartBtn = $('.empty_cart_btn');
   checkoutView  = new CheckoutView(checkoutBtn, emptyCartBtn);
