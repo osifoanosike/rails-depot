@@ -33,6 +33,7 @@ gem 'normalize-rails'
 gem 'font-awesome-rails'
 gem 'carrierwave'
 gem 'jquery-ui-rails'
+gem 'globalize', github: 'ncri/globalize'
 
 
 group :test, :development do

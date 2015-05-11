@@ -6,5 +6,4 @@ FactoryGirl.define do
     image_url "/test/product.png"
     price 0.00
   end
-
 end

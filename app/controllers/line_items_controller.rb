@@ -80,11 +80,18 @@ class LineItemsController < ApplicationController
   def decrement
     @line_item.modify_quantity("decrement")
     @cart.update_line_item_price(@line_item, "decrement")
-
-    respond_to do |format|
-      format.html { redirect_to store_url }
-      format.js 
+    unless @line_item.quantity == 0
+      respond_to do |format|
+        format.html { redirect_to store_url }
+        format.js { @item_count = @line_item.quantity }
+      end
+    else
+      @line_item.destroy
+      respond_to do |format|
+        format.js { render action: "destroy.js.erb" }
+      end
     end
+    
   end
 
   private
@@ -99,6 +106,6 @@ class LineItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def line_item_params
-      params.require(:line_item).permit(:product_id)
+      params.require(:line_item)
     end
 end
