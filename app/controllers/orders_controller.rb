@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
     else
       @order = Order.new
       @payment_types = PaymentType.all
-      flash[:notice] = "#{@cart.line_items.count}"
+      render layout: 'store'
     end
   end
 
@@ -36,10 +36,12 @@ class OrdersController < ApplicationController
     @order.add_line_items_from_cart(@cart)
 
     #once the order has been completed, delete that cart.
-    Cart.destroy(Cart.find_by(id: @cart.id))
+    Cart.destroy(Cart.find_by(id: @cart.id))#send an order confirmation email
+    
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Thanks for you order!' }
+        OrderNotifier.received(@order).deliver_now
+        format.html { redirect_to store_url, notice: 'Thanks for your order!' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -62,6 +64,21 @@ class OrdersController < ApplicationController
     end
   end
 
+  def ship
+    @order = Order.find_by(id: params[:id])
+    @order.mark_as_shipped!
+
+    respond_to do |format|
+      if @order.save
+        OrderNotifier.shipped(@order).deliver_now
+        format.html { redirect_to products_url, notice: "Order ##{@order.id.to_s.rjust(9,'0')}has been successfully marked as shipped" }
+      else
+        format.html { redirect_to products_url, alert: "Order could not marked as shipped! Please try again or contact admin" }
+      end
+    end
+    
+  end
+
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
@@ -80,6 +97,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:name, :address, :email, :pay_type)
+      params.require(:order).permit(:name, :address, :email, :payment_type_id)
     end
 end

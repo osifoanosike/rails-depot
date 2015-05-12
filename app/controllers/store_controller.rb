@@ -7,5 +7,6 @@ class StoreController < ApplicationController
   def index
     # console
     @products = Product.all
+    render layout: 'store'
   end
 end

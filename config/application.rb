@@ -29,5 +29,6 @@ module Depot
 
     config.autoload_paths += %W(\#{config.root}/lib)
     config.active_record.raise_in_transactional_callbacks = true
+    config.exceptions_app = self.routes #set depott app as the exceptions_app so i can handle errors with more control
   end
 end

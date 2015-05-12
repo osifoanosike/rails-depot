@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @order.name %>
@@ -17,8 +15,10 @@
 
 <p>
   <strong>Pay type:</strong>
-  <%= @order.pay_type %>
+  <%= @order.payment_type %>
 </p>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<%= button_to ship_order_path(@order), data: { confirm: "This action is irreversible,\nPlease make necessary confirmations" }, class: 'btn btn-danger' do %>
+    <%= content_tag(:i, nil, class: "fa fa-close") %>
+    <span>Mark as Shipped</span>
+<% end %>

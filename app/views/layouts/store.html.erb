@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Depot</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header>
+      <%= render partial: "layouts/header" %>
+  </header>
+  <div class="container main"> 
+    <% if notice %>
+      <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong><%= notice %></strong>
+      </div>
+    <% end %>
+
+    <section class="col-md-9 store">
+      <%= yield %>
+    </section>
+    <section class="col-md-3" id="cart-section">
+      <% if @cart.line_items.empty? %>
+        <section class="empty-cart-container">
+          <h5>Your cart is still empty.</h5>
+        </section>
+      <% else %>
+        <section id="cart-container">
+          <%= render @cart %>
+        </section>
+      <% end %>
+    </section>
+  </div>
+</body>
+</html>

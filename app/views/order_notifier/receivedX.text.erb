@@ -1,0 +1,10 @@
+Hi <%= @order.name %>,
+
+Thanks for shopping with Depott. We just received your order for the following items:
+
+<%= render @order.line_items %>
+
+We're already processing it, and we'll send you a mail once its shipped!
+
+Thanks again! 
+The Depott team

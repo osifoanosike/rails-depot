@@ -15,4 +15,8 @@ class Order < ActiveRecord::Base
     end
     cart.save!
   end
+
+  def mark_as_shipped!
+    self.ship_date = Date.today
+  end
 end

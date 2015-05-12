@@ -5,7 +5,6 @@ class CartsController < ApplicationController
   # GET /carts.json
   def index
     @carts = Cart.all
-    console
   end
 
   # GET /carts/1
@@ -26,7 +25,7 @@ class CartsController < ApplicationController
   # POST /carts.json
   def create
     @cart = Cart.new(cart_params)
-    
+
     respond_to do |format|
       if @cart.save
         format.html { redirect_to @cart, notice: 'Cart was successfully created.' }

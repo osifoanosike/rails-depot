@@ -1,0 +1,45 @@
+<h1>Your depott order has been shipped</h1>
+
+<h3>Hi <%= @order.name %>></h3>
+<p>
+  Thanks for shopping with Depott. We just received your order for the following items:
+</p>
+
+<ul>
+  <%= @order.line_items.each do |line_item|%>
+    <li>
+      <div class="item-prop image">
+        <%= image_tag(line_item.product.image_url, width:"80px") %>
+      </div>
+
+      <div class="item-prop name">
+        <%= line_item.product.name %>
+      </div>
+
+      <div class="item-prop desc">
+        <%= line_item.product.description %>
+      </div>
+
+      <div class="item-prop qty">
+        <%= line_item.quantity %>
+      </div>
+
+      <div class="item-prop price">
+        <% if line_item.quantity > 1 %>
+          <span class="main"><%= number_to_currency( line_item.total_price, unit: "\u20A6".html_safe) %></span>
+          <small><%= line_item.quantity %> X <%= number_to_currency(line_item.product.price, unit: "\u20A6".html_safe) %></small>
+        <% else %>
+          <span class="main"><%= number_to_currency(line_item.total_price, unit: "\u20A6".html_safe) %></span>
+        <% end %>  
+      </div>
+    </li>
+  <% end %>
+</ul>
+  
+<p>
+  We're already processing it, and we'll send you a mail once its shipped!
+</p>
+<p>
+  Thanks again! 
+  The Depott team
+</p>
