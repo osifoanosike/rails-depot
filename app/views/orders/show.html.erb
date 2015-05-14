@@ -1,3 +1,7 @@
+<% if @order.ship_date %>
+  <p class="well well-sm">This order has been shipped<span class="pull-right"><small>Ship date: </small><span class="label label-danger label-as-badge"><%= @order.ship_date.strftime("%a %d %b, %Y") %></span></span></p>
+<% end %>
+
 <p>
   <strong>Name:</strong>
   <%= @order.name %>
@@ -15,10 +19,13 @@
 
 <p>
   <strong>Pay type:</strong>
-  <%= @order.payment_type %>
+  <%= @order.payment_type.name %>
 </p>
 
-<%= button_to ship_order_path(@order), data: { confirm: "This action is irreversible,\nPlease make necessary confirmations" }, class: 'btn btn-danger' do %>
+<% unless  @order.ship_date %>
+  <%= button_to ship_order_path(@order), data: { confirm: "This action is irreversible,\nPlease make necessary confirmations" }, class: 'btn btn-danger' do %>
     <%= content_tag(:i, nil, class: "fa fa-close") %>
     <span>Mark as Shipped</span>
+  <% end %>
 <% end %>
+

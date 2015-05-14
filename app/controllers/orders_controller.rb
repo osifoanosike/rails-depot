@@ -38,11 +38,10 @@ class OrdersController < ApplicationController
 
     #once the order has been completed, delete that cart.
     Cart.destroy(Cart.find_by(id: @cart.id))#send an order confirmation email
-    
     respond_to do |format|
       if @order.save
         OrderNotifier.received(@order).deliver_now
-        format.html { redirect_to store_url, notice: 'Thanks for your order!' }
+        format.html { redirect_to store_url, notice: "Thanks for your order! #{@order.payment_type}"  }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }

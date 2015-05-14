@@ -3,17 +3,15 @@
     <fieldset>
       <legend>Please log in</legend>
       <div class="form-section">
-        <%= label_tag :name, 'Name' %>
-        <%= text_field_tag :name, params[:name], class:"form-control" %>
+        <%= text_field_tag :name, params[:name], class:"form-control", placeholder:"Enter your username" %>
       </div>
 
       <div class="form-section">
-        <%= label_tag :password, 'Password' %>
-        <%= password_field_tag :password, params[:password], class:"form-control" %>
+        <%= password_field_tag :password, params[:password], class:"form-control", placeholder:"Enter your password" %>
       </div>
 
       <div class="form-section">
-        <%= submit_tag 'Login', class:"btn btn-primary" %>
+        <%= submit_tag 'Login', class:"btn btn-primary btn-lg" %>
       </div>
       
     </fieldset>

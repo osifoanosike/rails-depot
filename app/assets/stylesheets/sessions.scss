@@ -1,3 +1,24 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#login-section {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width:30%;
+  margin: 5em auto;
+
+  legend {
+    text-align: center;
+  }
+
+  .form-section {
+    padding-left: 1em;
+    padding-right: 1em;
+
+    .btn {
+      width: 100%
+    }
+  }
+}

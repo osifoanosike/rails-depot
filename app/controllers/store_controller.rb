@@ -8,7 +8,7 @@ class StoreController < ApplicationController
   def index
     # console
     if params[:set_locale]
-      redirect_to store_url(locale: params[:set_locale]), @products = Product.find_by(locale: params[:set_locale])
+      redirect_to store_url(locale: params[:set_locale]), @products = Product.where(locale: I18n.locale)
     else
       @products = Product.all
     end   

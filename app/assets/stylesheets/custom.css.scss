@@ -2,12 +2,17 @@
 @import "bootstrap";
 
 .navbar {
-  
+  background-color: #005387;
   border-radius: 0;
+}
 
-  * {
-      background-color: #005387;
-  }
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #105d8e;
+  color: #fff;
+}
+
+.dropdown-menu * {
+  color: #004875
 }
 
 a.navbar-brand {
@@ -41,4 +46,16 @@ small#app-spec {
 
 .form-section {
   margin-bottom: 1em;
+}
+
+.color-green{
+  color: #4cae4c;
+}
+
+.header-login {
+  margin-top: 11px;
+  border: 1px solid #2e7fb2;
+  background-color: #2e7fb2;
+  color: #fff !important;
+  padding: .2em .5em .2em .5em !important;
 }

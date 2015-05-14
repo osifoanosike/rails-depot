@@ -18,16 +18,15 @@
         <td>
           <%= link_to order do %>
             <%= content_tag(:span, order.id.to_s.rjust(7, '0')) %>
+            <% if order.ship_date %>
+              <%= content_tag(:i, nil, class:"color-green fa fa-check-circle") %>
+            <% end %>
           <% end %>
         </td>
         <td><%= order.name %></td>
-        <td><%= order.address %></td>
+        <td><%= truncate(order.address, length: 20) %></td>
         <td><%= order.email %></td>
-        <% if order.payment_type %>
         <td><%= order.payment_type.name %></td>
-        <% else %>
-          <td><%= order.payment_type %></td>
-        <% end %>
         <td>
           <section>
             <a href="<%= edit_order_path(order) %>"><i class="fa fa-edit"></i></a>
