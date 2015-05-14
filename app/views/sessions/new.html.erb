@@ -1,0 +1,21 @@
+<section id="login-section">
+  <%= form_tag action: :create, method: :post do %>
+    <fieldset>
+      <legend>Please log in</legend>
+      <div class="form-section">
+        <%= label_tag :name, 'Name' %>
+        <%= text_field_tag :name, params[:name], class:"form-control" %>
+      </div>
+
+      <div class="form-section">
+        <%= label_tag :password, 'Password' %>
+        <%= password_field_tag :password, params[:password], class:"form-control" %>
+      </div>
+
+      <div class="form-section">
+        <%= submit_tag 'Login', class:"btn btn-primary" %>
+      </div>
+      
+    </fieldset>
+  <% end %>
+</section>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150512110501) do
+ActiveRecord::Schema.define(version: 20150514063139) do
 
   create_table "ayment_types", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -55,8 +55,16 @@ ActiveRecord::Schema.define(version: 20150512110501) do
     t.text     "description", limit: 65535
     t.string   "image_url",   limit: 255
     t.decimal  "price",                     precision: 10, default: 0
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.string   "locale",      limit: 255,                  default: "en"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name",            limit: 255
+    t.string   "password_digest", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_foreign_key "line_items", "carts"

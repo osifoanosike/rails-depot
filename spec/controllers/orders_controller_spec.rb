@@ -23,7 +23,7 @@ RSpec.describe OrdersController, type: :controller do
   describe "PATCH/PUT mark_as_shipped" do
     before do
       @order = FactoryGirl.create(:order)
-      post :ship, {id: @order.id, order: { ship_date: Date.tomorrow } }
+      post :ship, {id: @order.id }
     end
 
     it "should update the shipped date accordingly" do

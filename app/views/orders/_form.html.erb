@@ -12,22 +12,22 @@
   <% end %>
 
   <div class="field form-section">
-    <%= f.label :name %><br>
+    <%= f.label :name, t('.name') %><br>
     <%= f.text_field :name, class:"form-control" %>
   </div>
   <div class="field form-section">
-    <%= f.label :address %><br>
+    <%= f.label :address, t('.address_html')%><br>
     <%= f.text_field :address, class:"form-control" %>
   </div>
   <div class="field form-section">
-    <%= f.label :email %><br>
+    <%= f.label :email, t('.email') %><br>
     <%= f.text_field :email, class:"form-control" %>
   </div>
   <div class="field form-section">
-    <%= f.label :payment_type_id %><br>
-    <%= f.collection_select :payment_type_id, @payment_types, :id, :name,  { prompt:"Select a payment method" }, class:"form-control" %>
+    <%= f.label :payment_type, t('.payment_type')%><br>
+    <%= f.collection_select :payment_type_id, @payment_types, :id, :name,  { prompt: t('.pay_prompt_html') }, class:"form-control" %>
   </div>
   <div class="actions form-section force-inline">
-    <button class="btn btn-primary">Complete</button>
+    <button class="btn btn-primary"><%= t('.submit') %></button>
   </div>
 <% end %>

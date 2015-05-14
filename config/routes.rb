@@ -1,27 +1,35 @@
 Rails.application.routes.draw do
 
-  resources :orders do
-    member do
-      post 'ship'
-    end
-  end
-  resources :line_items do
-    member do
-      post 'increment'
-      post 'decrement'
-    end
-  end
-  resources :carts
+  match '/admin', to: 'admin#index', as: 'admin', via: 'get'
+  match '/login', to: 'sessions#new', as: 'login',  via: 'get'
+  match '/signup', to: 'users#new', via: 'get'
+
+  match '/signout', to: 'sessions#destroy', via: 'delete'
+  post 'sessions/create'
+
+  resources :users
+
+  
   resources :products do
-    member do
-        get 'who_bought'
-    end
+    get :who_bought, on: :member
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'store#index', as: 'store'
 
-  # match '404', to: 'store#index', via: 'all'
+  scope '(:locale)' do
+    resources :line_items do
+      post :increment, on: :member
+      post :decrement, on: :member
+    end
+
+    resources :carts
+
+    resources :orders do
+      post :ship, on: :member
+    end
+    root 'store#index'
+    root 'store#index', as: 'store',via: 'all'
+  end
 end

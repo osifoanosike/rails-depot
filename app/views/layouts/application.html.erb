@@ -12,13 +12,13 @@
   </header>
   <div class="container main"> 
     <section class="col-md-12 store">
-      <% if notice %>
+      <% if notice || alert %>
         <div class="alert alert-info alert-dismissible" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <strong><%= notice %></strong>
+          <strong><%= notice || alert %></strong>
         </div>
       <% end %>
-      
+
       <%= yield %>
     </section>
   </div>

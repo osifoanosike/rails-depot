@@ -1,0 +1,19 @@
+en:
+  layouts:
+    application:
+      hello: "Hello world"
+      Products: "Productos"
+      Orders: "Ordenes"
+      Users: "Usuarios"
+      add_html: "Añadir a la cesta"
+
+  store:
+    index:
+       add_html: "Añadir a la cesta"
+
+  number:
+    currency:
+      format:
+        unit: "NG\u20A6"
+
+

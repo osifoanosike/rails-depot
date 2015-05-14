@@ -1,8 +1,9 @@
-<h1>Listing Orders</h1>
+<h1>Orders</h1>
 
-<table>
+<table class="table table-condensed">
   <thead>
     <tr>
+      <th>Order Nos</th>
       <th>Name</th>
       <th>Address</th>
       <th>Email</th>
@@ -14,18 +15,26 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
+        <td>
+          <%= link_to order do %>
+            <%= content_tag(:span, order.id.to_s.rjust(7, '0')) %>
+          <% end %>
+        </td>
         <td><%= order.name %></td>
         <td><%= order.address %></td>
         <td><%= order.email %></td>
+        <% if order.payment_type %>
         <td><%= order.payment_type.name %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+          <td><%= order.payment_type %></td>
+        <% end %>
+        <td>
+          <section>
+            <a href="<%= edit_order_path(order) %>"><i class="fa fa-edit"></i></a>
+            <%= link_to content_tag(:i, nil,  class: "fa fa-trash"), order, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </section>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Order', new_order_path %>

@@ -1,6 +1,6 @@
   <%= render @cart.line_items %>
   <li id="cart-total">
-    <span>Total</span>
+    <span><%= t('total_html') %></span>
     <span class="pull-right"><%= number_to_currency(@cart.total_amount, unit: "\u20A6")%></span>
   </li>
 
@@ -17,7 +17,7 @@
 
     <%= link_to new_order_path, class:"checkout btn btn-primary pull-right" do %>
       <i class="fa fa-check-circle"></i>
-      <span>Checkout</span>
+      <span><%= t('.checkout_html') %></span>
     <% end %>
 
 
