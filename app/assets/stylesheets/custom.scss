@@ -54,8 +54,13 @@ small#app-spec {
 
 .header-login {
   margin-top: 11px;
+  margin-right: 7px;
   border: 1px solid #2e7fb2;
   background-color: #2e7fb2;
   color: #fff !important;
-  padding: .2em .5em .2em .5em !important;
+  padding: .2em .7em .2em .7em !important;
+}
+
+#cart-total {
+  margin: .6em auto;
 }

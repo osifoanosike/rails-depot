@@ -15,9 +15,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <% if session[:user_id] %>
         <ul class="nav navbar-nav">
-          <li><%= link_to t('Orders'), orders_path %></li>
-          <li><%= link_to t('Products'), products_path %></li>
-          <li><%= link_to t('Users'), users_path %></li>
+          <li><%= link_to t('.orders'), orders_path %></li>
+          <li><%= link_to t('.products'), products_path %></li>
+          <li><%= link_to t('.users'), users_path %></li>
         </ul>
       <% end %>
       <ul class="nav navbar-nav navbar-right">
@@ -47,9 +47,9 @@
         <li></li>
         <li>
           <%= form_tag store_path, class: 'locale' do %>
-            <% select_tag 'set_locale', options_for_select(LANGUAGES, I18n.locale.to_s), onchange: 'this.form.submit()' %>
+            <%= select_tag 'set_locale', options_for_select(I18n.available_locales, I18n.locale.to_s), onchange: 'this.form.submit()' %>
             <%= submit_tag 'submit' %>
-            <%= javascript_tag "$('.local input').hide()" %>
+            <%= javascript_tag "$('.locale input').hide()" %>
           <% end %>
         </li>
       </ul>

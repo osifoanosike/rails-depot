@@ -26,6 +26,9 @@ module Depot
         g.test_framework :rspec, fixture: true
         g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
+    #internationalization stuff
+    I18n.available_locales = [:en, :es]
+    # I18n.default_locale = [:en]
 
     config.autoload_paths += %W(\#{config.root}/lib)
     config.active_record.raise_in_transactional_callbacks = true

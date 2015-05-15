@@ -24,11 +24,16 @@
     <section class="col-md-3" id="cart-section">
       <% if @cart.line_items.empty? %>
         <section class="empty-cart-container">
-          <h5>Your cart is still empty.</h5>
+          <div class="alert alert-info" role="alert">
+            <h4>Your cart is empty</h4>
+          </div>
         </section>
       <% else %>
         <section id="cart-container">
-          <%= render @cart %>
+          <p class="well well-sm">Your cart</p>
+          <div id="cart-items">
+            <%= render @cart %>
+          </div>
         </section>
       <% end %>
     </section>

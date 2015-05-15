@@ -1,32 +1,49 @@
 
 en:
+  products:    
+    _product:
+      add: "Add to cart"
+
+  store:
+    index:
+      add: "Add to cart"
+
+  carts:
+    cart:
+      total_html: "Total"
+
+  orders:
+    index:
+      order: "Orders"
+
+    show:
+      address: "Address"
+      name: "Name"
+      email: "Email Address"
+      pay_type: "Payment type"
+
+
   layouts:
-    application:
+    header:
       hello: "Hello world"
       Product: "Products"
       Orders: "Orders"
       Users: "Users"
 
-  store:
-    index:
-       add: "Add to cart"
-
-  products:    
-    product:
-      add_html: "Add to cart"
-
-  number:
-    currency:
-      format:
-        unit: "\u20A6"
+  # number:
+  #   currency:
+  #     format:
+  #       unit: "\u20A6"
 
   orders:
     new:
-      form:
-        name: "Name"
-        address_html: "Address"
-        email: "E-mail"
-        payment_type: "Pay with"
-        pay_prompt_html: "Select a payment method"
-        submit: "Place Order"
+      title: "Checkout"
+    form:
+      name: "Name"
+      address_html: "Address"
+      email: "E-mail"
+      payment_type: "Pay with"
+      pay_prompt: "Select a payment method"
+      submit: "Place Order"
+
 

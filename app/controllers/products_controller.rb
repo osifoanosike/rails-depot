@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-
   # GET /products
   # GET /products.json
   def index
@@ -61,14 +60,16 @@ class ProductsController < ApplicationController
     end
   end
 
-  #we want to get users that  bought same product
+  #this returns the order details of the last person that bought this item
   def who_bought
     @product = Product.find(params[:id])
-    @latest_order  = @product.orders.order('updated_at').last
+    @latest_orders  = @product.orders.order('updated_at').last
 
     if stale?(@latest_order)
       respond_to do |format|
         format.atom
+        format.json { render json: @latest_orders, status: 200 } 
+        format.html { render :who_bought, locals: { order: @latest_orders  } }
       end
     end
   end

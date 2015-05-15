@@ -13,22 +13,27 @@ class ApplicationController < ActionController::Base
     end
 
     def authorize
-      unless User.is_first_user? or User.find_by(id: session[:user_id])
-        redirect_to login_url, notice: "Please log in"
 
-        # if request.format != 'MIME::html'
-        #   authenticate_or_request_with_htto_basic do |user, password|
-
-        #   end
-        # end
+      if request.format != "MIME::html"
+        authenticate_or_request_with_http_basic do |username, password|
+          user = User.find_by(name: username);
+          if user && user.authenticate(password)
+            true
+          else
+            false
+          end
+        end
+      else
+        unless User.is_first_user? or User.find_by(id: session[:user_id])
+          redirect_to login_url, notice: "Please log in"          
+        end
       end
-    end
+    end 
 
     def set_i18n_locale_from_params
-      I18n.available_locales << :es
-      if params[:locale] #if the locale is epcified in the url
+      if params[:locale] #if the locale is specified in the url
         if I18n.available_locales.include?(params[:locale].to_sym)
-          I18n.locale = params[:notice]
+          I18n.locale = params[:locale]
         else
           flash.now[:notice] = "#{params[:locale]} translation is not available"
           logger.error(flash.now[:notice])

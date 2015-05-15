@@ -1,22 +1,22 @@
-function CheckoutView(checkoutBtn, emptyCartBtn) {
-  this.checkoutBtn = checkoutBtn;
-  this.emptyCartBtn = emptyCartBtn;
+function CheckoutView(cartActions, lineItemActions) {
+  this.cartActions = cartActions;
+  this.lineItemActions = lineItemActions;
 }
 
 CheckoutView.prototype = {
 
-  disable_checkout: function() {
-    if(window.location.pathname == "/orders/new") {
-      this.checkoutBtn.attr('disabled', 'true');
-      this.emptyCartBtn.attr('disabled', 'true');
+  hideCtrls: function() {
+    if(window.location.pathname == "/orders/new" || window.location.pathname == "/en/orders/new") {
+      this.cartActions.css('display', 'none');
+      this.lineItemActions.css('display', 'none');
     }
   }
 }
 
 $(document).on("page:change", function(){
-  var checkoutBtn = $('a.checkout');
-  var emptyCartBtn = $('.empty_cart_btn');
-  checkoutView  = new CheckoutView(checkoutBtn, emptyCartBtn);
+  var cartActions = $('#cart-container .action-section');
+  var lineItemActions = $('#cart-container .item-action');
+  checkoutView  = new CheckoutView(cartActions, lineItemActions);
   
-  checkoutView.disable_checkout();
+  checkoutView.hideCtrls();
 });

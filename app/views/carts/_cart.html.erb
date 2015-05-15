@@ -1,11 +1,11 @@
   <%= render @cart.line_items %>
   <li id="cart-total">
-    <span><%= t('total_html') %></span>
+    <span><%= t('.total_html') %></span>
     <span class="pull-right"><%= number_to_currency(@cart.total_amount, unit: "\u20A6")%></span>
   </li>
 
   <section class="action-section">
-    <%= button_to @cart, method: :delete, data: { confirm: "You sure you want to empty your cart?" }, class: 'empty_cart_btn btn btn-default pull-right' do %>
+    <%= button_to @cart, method: :delete, data: { confirm: "You sure you want to empty your cart?" }, class: 'empty_cart_btn btn btn-default btn-sm pull-right' do %>
       <%= content_tag(:i, nil, class:"fa fa-cart-arrow-down") %>
       <span class="btn-text">Empy Cart</span>
     <% end %>
@@ -15,7 +15,7 @@
       <span>Continue shopping</span>
     <% end %>
 
-    <%= link_to new_order_path, class:"checkout btn btn-primary pull-right" do %>
+    <%= link_to new_order_path, class:"checkout btn btn-sm  btn-primary" do %>
       <i class="fa fa-check-circle"></i>
       <span><%= t('.checkout_html') %></span>
     <% end %>

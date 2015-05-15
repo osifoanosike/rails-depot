@@ -11,7 +11,7 @@
       <section class="action_section">
         <%= button_to line_items_path(product_id: product), class: 'add_to_cart_btn btn btn-default pull-right', remote: true do %>
                 <%= content_tag(:i, nil, class:"fa fa-cart-plus") %>
-          <span><%= t('.add_html') %></span>
+          <span><%= t('store.index.add') %></span>
         <% end %>
         <span class="clearfix"></span>
       </section>

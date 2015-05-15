@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-  scope '(:locale)' do
+
+  
+  scope "(:locale)" do
     resources :line_items do
       post :increment, on: :member
       post :decrement, on: :member
@@ -29,7 +31,8 @@ Rails.application.routes.draw do
     resources :orders do
       post :ship, on: :member
     end
-    root 'store#index'
+    
+    root 'store#index', via: 'get'
     root 'store#index', as: 'store',via: 'all'
   end
 end

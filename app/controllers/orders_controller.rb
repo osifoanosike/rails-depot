@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.order(created_at: :desc)
   end
 
   # GET /orders/1
@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         OrderNotifier.received(@order).deliver_now
-        format.html { redirect_to store_url, notice: "Thanks for your order! #{@order.payment_type}"  }
+        format.html { redirect_to store_url, notice: "Thanks for your order! we'll notify you as soon as it ships."  }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -71,9 +71,9 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         OrderNotifier.shipped(@order).deliver_now
-        format.html { redirect_to products_url, notice: "Order ##{@order.id.to_s.rjust(9,'0')}has been successfully marked as shipped" }
+        format.html { redirect_to orders_url, notice: "Order ##{@order.id.to_s.rjust(9,'0')} has been successfully marked as shipped" }
       else
-        format.html { redirect_to products_url, alert: "Order could not marked as shipped! Please try again or contact admin" }
+        format.html { redirect_to orders_url, alert: "Order could not marked as shipped! Please try again or contact admin" }
       end
     end
     

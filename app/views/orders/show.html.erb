@@ -1,31 +1,56 @@
 <% if @order.ship_date %>
   <p class="well well-sm">This order has been shipped<span class="pull-right"><small>Ship date: </small><span class="label label-danger label-as-badge"><%= @order.ship_date.strftime("%a %d %b, %Y") %></span></span></p>
-<% end %>
-
-<p>
-  <strong>Name:</strong>
-  <%= @order.name %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @order.address %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @order.email %>
-</p>
-
-<p>
-  <strong>Pay type:</strong>
-  <%= @order.payment_type.name %>
-</p>
-
-<% unless  @order.ship_date %>
-  <%= button_to ship_order_path(@order), data: { confirm: "This action is irreversible,\nPlease make necessary confirmations" }, class: 'btn btn-danger' do %>
-    <%= content_tag(:i, nil, class: "fa fa-close") %>
-    <span>Mark as Shipped</span>
+<% else %>
+   <%= button_to ship_order_path(@order), data: { confirm: "This action is irreversible,\nPlease make necessary confirmations" }, id: 'ship_action_btn', class: 'btn btn-success btn-sm pull-right' do %>
+      <%= content_tag(:i, nil, class: "fa fa-check-circle") %>
+      <span><%= t('.mark_as_shipped') %></span>
   <% end %>
 <% end %>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Order Details
+  </div>
+  <div class="panel-body">
+    <table class="table">
+      <th>
+        <td>
+          <strong><%= t('.name') %></strong>
+          <%= @order.name %>
+        </td>
+
+        <td>
+          <strong><%= t('.address') %>:</strong>
+          <%= @order.address %>
+        </td>
+
+        <td>
+          <strong><%= t('.email') %>:</strong>
+          <%= @order.email %>
+        </td>
+
+        <td>
+          <strong><%= t('.pay_type') %>:</strong>
+          <%= @order.payment_type.name %>
+        </td>
+      </th>
+    </table>
+
+    <fieldset>
+      <legend>Items</legend>
+
+      <section id="order_items">
+        <ul>
+          <%= render @order.line_items %>
+        </ul>
+      </section>
+    </fieldset>
+  </div>
+</div>
+
+
+
+
+
 

@@ -11,7 +11,8 @@ class StoreController < ApplicationController
       redirect_to store_url(locale: params[:set_locale]), @products = Product.where(locale: I18n.locale)
     else
       @products = Product.all
-    end   
+    end
+    
     render layout: 'store'
   end
 end
