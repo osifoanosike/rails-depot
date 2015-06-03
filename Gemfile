@@ -35,6 +35,8 @@ gem 'carrierwave'
 gem 'jquery-ui-rails'
 gem 'globalize', github: 'ncri/globalize'
 gem 'rails-i18n', '~> 4.0.0'
+gem 'state_machines-activerecord'
+gem 'ransack'
 
 
 group :test, :development do

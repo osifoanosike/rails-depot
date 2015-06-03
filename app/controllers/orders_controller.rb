@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   include CurrentCart
   before_action :set_cart, only:[:new, :create]
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy, :package, :start_processing, :ship]
   skip_before_action :authorize, only: [:new, :create]
  
   # GET /orders
@@ -35,11 +35,10 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
-
     #once the order has been completed, delete that cart.
-    Cart.destroy(Cart.find_by(id: @cart.id))#send an order confirmation email
     respond_to do |format|
       if @order.save
+        Cart.destroy(Cart.find_by(id: @cart.id))#send an order confirmation email
         OrderNotifier.received(@order).deliver_now
         format.html { redirect_to store_url, notice: "Thanks for your order! we'll notify you as soon as it ships."  }
         format.json { render :show, status: :created, location: @order }
@@ -65,8 +64,8 @@ class OrdersController < ApplicationController
   end
 
   def ship
-    @order = Order.find_by(id: params[:id])
-    @order.mark_as_shipped!
+    # @order = Order.find_by(id: params[:id])
+    @order.state_event = "ship"
 
     respond_to do |format|
       if @order.save
@@ -75,8 +74,24 @@ class OrdersController < ApplicationController
       else
         format.html { redirect_to orders_url, alert: "Order could not marked as shipped! Please try again or contact admin" }
       end
+    end 
+  end
+
+
+  def package
+    @order.package
+
+    respond_to do |format|
+      format.html { redirect_to orders_url, notice: "Order #{@order.id.to_s.rjust(9, '0')} has been marked as packaged" }
     end
-    
+  end
+
+  def start_processing
+    @order.process
+
+    respond_to do |format|
+      format.html { redirect_to orders_url, notice: "Order #{@order.id.to_s.rjust(9, '0')} has been marked as processed" }
+    end
   end
 
   # DELETE /orders/1

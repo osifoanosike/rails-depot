@@ -1,12 +1,8 @@
-<% if @order.ship_date %>
+<% if @order.shipped? %>
   <p class="well well-sm">This order has been shipped<span class="pull-right"><small>Ship date: </small><span class="label label-danger label-as-badge"><%= @order.ship_date.strftime("%a %d %b, %Y") %></span></span></p>
 <% else %>
-   <%= button_to ship_order_path(@order), data: { confirm: "This action is irreversible,\nPlease make necessary confirmations" }, id: 'ship_action_btn', class: 'btn btn-success btn-sm pull-right' do %>
-      <%= content_tag(:i, nil, class: "fa fa-check-circle") %>
-      <span><%= t('.mark_as_shipped') %></span>
-  <% end %>
+  <%= render partial: "orders/action_buttons/#{@order.state}" %>
 <% end %>
-
 
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -48,9 +44,3 @@
     </fieldset>
   </div>
 </div>
-
-
-
-
-
-

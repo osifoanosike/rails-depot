@@ -4,6 +4,39 @@ class Order < ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true
   validates :address, presence: true
+  validates :payment_type, presence: true
+  validates_associated :payment_type
+
+  scope :open_orders, -> { with_state(:open) } 
+  scope :processed_orders, -> { with_state(:processed) }
+  scope :packaged_orders, -> { with_state(:packaged) }
+  scope :shipped_orders,  -> { with_state(:shipped) }
+
+  state_machine initial: :open do
+    event :process do
+      transition :open => :processed
+    end
+
+    event :package do
+      transition :processed => :packaged
+    end
+
+    event :ship do
+      transition :packaged => :shipped
+    end
+
+
+    before_transition :packaged => :shipped do |order|
+      order.is_shippable?
+      #order.mark_as_shipped!
+    end
+
+    state :shipped do
+      # debugger
+    end
+
+  end
+
 
   def add_line_items_from_cart(cart)
     # line_items = cart.line_items

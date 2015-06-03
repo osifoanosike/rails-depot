@@ -13,7 +13,6 @@ class SessionsController < ApplicationController
         session[:user_id] = user.id #logs the user into the session
         redirect_to admin_url #this logged-in user is an administrator
       else
-        session[:user_id] = 0
         redirect_to login_url, alert: "Invalid username/password combination"
       end
     end

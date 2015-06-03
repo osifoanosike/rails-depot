@@ -15,3 +15,23 @@
 #order_items .item-action {
   display: none;
 }
+
+.label-shipped, .btn-shipped {
+  background-color: green;
+  color: #fff;
+}
+
+.label-open, .btn-open {
+  background-color: red;
+  color: #fff;
+}
+
+.label-processed, .btn-processed {
+  background-color: #ffa600;
+  color: #fff;
+}
+
+.label-packaged, .btn-packaged {
+  background-color: blue;
+  color: #fff;
+}

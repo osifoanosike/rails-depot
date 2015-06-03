@@ -1,0 +1,4 @@
+  <%= button_to ship_order_path(@order), data: { confirm: "This action is irreversible,\nPlease make necessary confirmations" }, id: 'ship_action_btn', class: 'btn btn-shipped btn-sm pull-right' do %>
+      <%= content_tag(:i, nil, class: "fa fa-check-circle") %>
+      <span><%= t('.mark_as_shipped') %></span>
+  <% end %>

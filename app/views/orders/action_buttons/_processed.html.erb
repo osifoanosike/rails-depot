@@ -1,0 +1,4 @@
+ <%= button_to package_order_path(@order), data: { confirm: "This action is irreversible,\nPlease make necessary confirmations" }, id: 'package_action_btn', class: 'btn btn-packaged btn-sm pull-right' do %>
+      <%= content_tag(:i, nil, class: "fa fa-check-circle") %>
+      <span>Package Order</span>
+  <% end %>

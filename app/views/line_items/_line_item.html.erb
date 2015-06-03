@@ -23,7 +23,7 @@
       <div class="item-prop price">
         <% if line_item.quantity > 1 %>
           <span class="main"><%= number_to_currency( line_item.total_price, unit: "\u20A6".html_safe) %></span>
-          <small><%= line_item.quantity %> X <%= number_to_currency(line_item.product.price, unit: "\u20A6".html_safe) %></small>
+          <small><%= line_item.quantity %> X <%= number_to_currency(line_item.unit_price, unit: "\u20A6".html_safe) %></small>
         <% else %>
           <span class="main"><%= number_to_currency(line_item.total_price,
            unit: "\u20A6".html_safe) %></span>

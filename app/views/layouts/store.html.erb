@@ -22,6 +22,8 @@
       <%= yield %>
     </section>
     <section class="col-md-3" id="cart-section">
+      <p class="well well-sm">Your cart</p>
+      <div id="cart-items">
       <% if @cart.line_items.empty? %>
         <section class="empty-cart-container">
           <div class="alert alert-info" role="alert">
@@ -29,13 +31,9 @@
           </div>
         </section>
       <% else %>
-        <section id="cart-container">
-          <p class="well well-sm">Your cart</p>
-          <div id="cart-items">
-            <%= render @cart %>
-          </div>
-        </section>
+          <%= render @cart %>
       <% end %>
+      </div>
     </section>
   </div>
 </body>

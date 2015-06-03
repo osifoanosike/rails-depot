@@ -14,8 +14,8 @@ CheckoutView.prototype = {
 }
 
 $(document).on("page:change", function(){
-  var cartActions = $('#cart-container .action-section');
-  var lineItemActions = $('#cart-container .item-action');
+  var cartActions = $('#cart-section .action-section');
+  var lineItemActions = $('#cart-section .item-action');
   checkoutView  = new CheckoutView(cartActions, lineItemActions);
   
   checkoutView.hideCtrls();

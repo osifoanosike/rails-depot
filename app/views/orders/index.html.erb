@@ -18,9 +18,7 @@
         <td>
           <%= link_to order do %>
             <%= content_tag(:span, order.id.to_s.rjust(7, '0')) %>
-            <% if order.ship_date %>
-              <%= content_tag(:i, nil, class:"color-green fa fa-check-circle") %>
-            <% end %>
+            <span class="label label-<%= order.state %> label-as-badge"><%= order.state %></span>
           <% end %>
         </td>
         <td><%= order.name %></td>

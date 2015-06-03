@@ -32,6 +32,8 @@ class LineItemsController < ApplicationController
   def create
     product = Product.find_by(id: params[:product_id])
     @line_item = @cart.add_product(product.id)
+    @line_item.set_unit_price
+    
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to store_url, notice: 'Item was added to cart successfully.' }

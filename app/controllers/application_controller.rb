@@ -15,14 +15,14 @@ class ApplicationController < ActionController::Base
     def authorize
 
       if request.format != "MIME::html"
-        authenticate_or_request_with_http_basic do |username, password|
-          user = User.find_by(name: username);
-          if user && user.authenticate(password)
-            true
-          else
-            false
-          end
-        end
+        # authenticate_or_request_with_http_basic do |username, password|
+        #   user = User.find_by(name: username);
+        #   if user && user.authenticate(password) ? true : false
+        #     true
+        #   else
+        #     false
+        #   end
+        # end
       else
         unless User.is_first_user? or User.find_by(id: session[:user_id])
           redirect_to login_url, notice: "Please log in"          

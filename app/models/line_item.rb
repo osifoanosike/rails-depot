@@ -14,4 +14,8 @@ class LineItem < ActiveRecord::Base
     end
     self.save!
   end
+
+  def set_unit_price()
+    self.unit_price = self.product.price
+  end
 end

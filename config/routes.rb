@@ -30,6 +30,8 @@ Rails.application.routes.draw do
 
     resources :orders do
       post :ship, on: :member
+      post :package, on: :member
+      post :start_processing, on: :member
     end
     
     root 'store#index', via: 'get'

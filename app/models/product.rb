@@ -20,4 +20,12 @@ class Product < ActiveRecord::Base
       false      
     end
   end
+
+  def filter(filter_params)
+    filter_params.each do |param, value|
+      filter_string += "and #{param} LIKE #{value}"
+    end
+
+    Product.where(filter_string.sub(/and/, ''))
+  end
 end

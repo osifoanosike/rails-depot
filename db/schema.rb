@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514063139) do
+ActiveRecord::Schema.define(version: 20150602124633) do
 
   create_table "ayment_types", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150514063139) do
     t.integer  "quantity",    limit: 4,                default: 1
     t.decimal  "total_price",           precision: 10, default: 0
     t.integer  "order_id",    limit: 4
+    t.decimal  "unit_price",            precision: 10
   end
 
   add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150514063139) do
     t.datetime "updated_at",                  null: false
     t.integer  "payment_type_id", limit: 4
     t.date     "ship_date"
+    t.string   "state",           limit: 255
   end
 
   create_table "payment_types", force: :cascade do |t|

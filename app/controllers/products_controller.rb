@@ -60,6 +60,14 @@ class ProductsController < ApplicationController
     end
   end
 
+
+  # def search
+  #   @result = Product.filter
+  #   respond_to |format| do
+  #     format.html { render "index" }
+  #   end
+  # end
+
   #this returns the order details of the last person that bought this item
   def who_bought
     @product = Product.find(params[:id])
